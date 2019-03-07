@@ -8,14 +8,22 @@ public class Menu implements Serializable {
     //主键
     private String id;
 
-    private String title;
+    private String name;
 
     private String level;
 
     private String parentId;
 
-    //子菜单
+    private String path;
+
+    private String url;
+
     private List<Menu> children;
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public String getId() {
         return id;
@@ -25,12 +33,12 @@ public class Menu implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLevel() {
@@ -49,6 +57,22 @@ public class Menu implements Serializable {
         this.parentId = parentId;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public List<Menu> getChildren() {
         return children;
     }
@@ -57,14 +81,5 @@ public class Menu implements Serializable {
         this.children = children;
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", level='" + level + '\'' +
-                ", parentId='" + parentId + '\'' +
-                ", children=" + children +
-                '}';
-    }
+
 }

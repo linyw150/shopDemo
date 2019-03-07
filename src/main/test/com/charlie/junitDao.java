@@ -27,7 +27,7 @@ public class junitDao {
         List<BrandVo> brandEntityList = brandService.queryBrandList();
         System.out.print(brandEntityList);
         for(BrandVo brand:brandEntityList){
-            System.out.println(brand.getId());
+            System.out.println(brand.toString());
         }
     }
 

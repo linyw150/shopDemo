@@ -4,6 +4,9 @@
   <resultMap id="brandMap" type="com.charlie.entity.BrandVo">
     <result column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="simple_desc" jdbcType="VARCHAR" property="desc" />
+    <result column="floor_price" jdbcType="VARCHAR" property="price" />
+    <result column="pic_url" jdbcType="VARCHAR" property="pictureUrl" />
   </resultMap>
   <select id="queryBrandList" resultMap="brandMap">
     select * from `t_brand`

@@ -1,6 +1,7 @@
 package com.charlie.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class User {
     private Integer id;
@@ -12,6 +13,8 @@ public class User {
     private String sex;
 
     private String address;
+
+
 
     public Integer getId() {
         return id;
