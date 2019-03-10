@@ -8,7 +8,33 @@
     <result column="floor_price" jdbcType="VARCHAR" property="price" />
     <result column="pic_url" jdbcType="VARCHAR" property="pictureUrl" />
   </resultMap>
-  <select id="queryBrandList" resultMap="brandMap">
+  <select id="queryAllBrand" resultMap="brandMap">
     select * from `t_brand`
+  </select>
+  <select id="queryBrandList" resultMap="brandMap">
+    select
+    <choose>
+      <when test="fields!=null and fields !='' ">
+        ${fields}
+      </when>
+      <otherwise>
+          *
+      </otherwise>
+    </choose>
+    from `t_brand`
+    <choose>
+      <when test="sidx!=null and sidx.trim() !=''">
+        ORDER BY  ${sidx} ${order}
+      </when>
+      <otherwise>
+        ORDER BY  id DESC
+      </otherwise>
+    </choose>
+    <if test="offset !=null and limit !='' ">
+      limit #{offset},#{limit}
+    </if>
+  </select>
+  <select id="queryBrandToTal" resultType="java.lang.Integer" >
+    select count(*) from `t_brand`
   </select>
 </mapper>

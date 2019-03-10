@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -18,8 +19,17 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandMapper brandMapper;
 
-    public List<BrandVo> queryBrandList() {
-        return brandMapper.queryBrandList();
+    public List<BrandVo> queryAllBrand() {
+        return brandMapper.queryAllBrand();
 
     }
+    public List<BrandVo> queryBrandList(Map<String,Object> query) {
+        return brandMapper.queryBrandList(query);
+
+    }
+    public int  queryBrandToTal() {
+        return brandMapper.queryBrandToTal();
+
+    }
+
 }
