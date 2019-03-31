@@ -31,5 +31,9 @@ public class BrandServiceImpl implements BrandService {
         return brandMapper.queryBrandToTal();
 
     }
+    public void  updateBrand(BrandVo brandVo) {
+        brandMapper.updateBrand(brandVo);
+    }
+
 
 }

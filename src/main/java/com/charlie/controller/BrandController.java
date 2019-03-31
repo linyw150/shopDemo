@@ -63,4 +63,22 @@ public class BrandController extends GenericController {
         ApiBaseAction api =new ApiBaseAction();
         return api.toResponseSuccess(pageUtils);
     }
+    //返回json格式数据，形式1
+    @RequestMapping(value = "/editBrandDetail",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> editBrandDetail(HttpServletRequest request, HttpServletResponse response,@RequestParam Map<String, String> params) {
+        //调用service方法得到用户列表
+        BrandVo brandInfo = new BrandVo();
+        brandInfo.setId(Integer.parseInt(params.get("id")));
+        brandInfo.setPictureUrl(params.get("pictureUrl"));
+        brandInfo.setDesc(params.get("desc"));
+        ApiBaseAction api =new ApiBaseAction();
+        try{
+            brandService.updateBrand(brandInfo);
+            return api.toResponseSuccess();
+        }catch (Exception e){
+            return api.toResponseFail();
+
+        }
+    }
 }

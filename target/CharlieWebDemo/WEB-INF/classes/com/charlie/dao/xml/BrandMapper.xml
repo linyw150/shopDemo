@@ -37,4 +37,13 @@
   <select id="queryBrandToTal" resultType="java.lang.Integer" >
     select count(*) from `t_brand`
   </select>
+  <update id="updateBrand"  parameterType="com.charlie.entity.BrandVo">
+      update `t_brand`
+      <set>
+        <if test="name!=null">name=#{name},</if>
+        <if test="pictureUrl!=null">pic_url=#{pictureUrl},</if>
+        <if test="desc!=null">simple_desc=#{desc}</if>
+      </set>
+      WHERE  id = #{id}
+  </update>
 </mapper>

@@ -12,4 +12,5 @@ public interface BrandMapper {
     List<BrandVo> queryAllBrand();
     List<BrandVo> queryBrandList(Map<String,Object> params);
     int  queryBrandToTal();
+    void  updateBrand(BrandVo brandVo);;
 }

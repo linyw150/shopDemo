@@ -3,7 +3,7 @@ package com.charlie.entity;
 import java.io.Serializable;
 
 public class BrandVo implements Serializable {
-    private  int id;
+    private  Integer id;
 
     private  String name;
 
@@ -13,11 +13,11 @@ public class BrandVo implements Serializable {
 
     private String desc;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

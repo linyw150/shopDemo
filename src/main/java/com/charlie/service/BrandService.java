@@ -10,4 +10,5 @@ public interface BrandService {
     List<BrandVo> queryAllBrand();
     List<BrandVo> queryBrandList(Map<String,Object> query);
     int queryBrandToTal();
+    void updateBrand(BrandVo brandVo);
 }
