@@ -1,6 +1,6 @@
 package com.charlie;
 
-import com.charlie.entity.BrandVo;
+import com.charlie.entity.BrandEntity;
 import com.charlie.service.BrandService;
 import com.charlie.util.ApiPageUtils;
 import com.charlie.util.Query;
@@ -24,7 +24,7 @@ public class junitDao3 {
     //@Transactional 事务处理
     @Test
     public void test(){
-        BrandVo brandInfo = new BrandVo();
+        BrandEntity brandInfo = new BrandEntity();
         brandInfo.setId(1001000);
         brandInfo.setPictureUrl("3333");
         brandInfo.setDesc("aaaa");

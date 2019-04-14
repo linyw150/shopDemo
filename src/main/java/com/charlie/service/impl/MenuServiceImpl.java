@@ -1,8 +1,7 @@
 package com.charlie.service.impl;
 
 import com.charlie.dao.mapper.MenuMapper;
-import com.charlie.entity.BrandVo;
-import com.charlie.entity.Menu;
+import com.charlie.entity.MenuEntity;
 import com.charlie.service.MenuService;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +18,24 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
 
-    public List<Menu> getMenuList() {
+    public List<MenuEntity> getMenuList() {
         try {
-            List<Menu> allMenu = menuMapper.getMenuList();
+            List<MenuEntity> allMenu = menuMapper.getMenuList();
             //遍历menu对象，查找menu 中parent_id=null 添加到
-            List<Menu> rootMenu = new ArrayList<Menu>();
-            for(Menu nav:allMenu){
+            List<MenuEntity> rootMenu = new ArrayList<MenuEntity>();
+            for(MenuEntity nav:allMenu){
                 if(nav.getLevel().equals("1")){
                     rootMenu.add(nav);
                 }
             }
             //为根菜单设置子节点
-            for(Menu nav:rootMenu){
-                List<Menu> childMenu = getChild(nav.getId(),allMenu);
+            for(MenuEntity nav:rootMenu){
+                List<MenuEntity> childMenu = getChild(nav.getId(),allMenu);
                 nav.setChildren(childMenu);
             }
             return  rootMenu;
         } catch (Exception e) {
-            return new ArrayList<Menu>();
+            return new ArrayList<MenuEntity>();
         }
     }
 
@@ -46,17 +45,17 @@ public class MenuServiceImpl implements MenuService {
      * @param allMenu 所有菜单
      * @return
      */
-    public  List<Menu> getChild(String id,List<Menu> allMenu){
-        List<Menu> childMenu = new ArrayList<Menu>();
-        for(Menu nav:allMenu){
+    public  List<MenuEntity> getChild(String id,List<MenuEntity> allMenu){
+        List<MenuEntity> childMenu = new ArrayList<MenuEntity>();
+        for(MenuEntity nav:allMenu){
             if(id.equals(nav.getParentId())){
                 childMenu.add(nav);
             }
         }
         if(childMenu.size()==0){
-            return new ArrayList<Menu>();
+            return new ArrayList<MenuEntity>();
         }
-        for(Menu nav:childMenu){
+        for(MenuEntity nav:childMenu){
             nav.setChildren(getChild(nav.getId(),allMenu));
         }
         return childMenu;

@@ -2,7 +2,7 @@ package com.charlie.service.impl;
 
 import com.charlie.dao.mapper.BrandMapper;
 import com.charlie.dao.mapper.UserMapper;
-import com.charlie.entity.BrandVo;
+import com.charlie.entity.BrandEntity;
 import com.charlie.entity.User;
 import com.charlie.entity.UserExample;
 import com.charlie.service.BrandService;
@@ -19,11 +19,11 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandMapper brandMapper;
 
-    public List<BrandVo> queryAllBrand() {
+    public List<BrandEntity> queryAllBrand() {
         return brandMapper.queryAllBrand();
 
     }
-    public List<BrandVo> queryBrandList(Map<String,Object> query) {
+    public List<BrandEntity> queryBrandList(Map<String,Object> query) {
         return brandMapper.queryBrandList(query);
 
     }
@@ -31,9 +31,12 @@ public class BrandServiceImpl implements BrandService {
         return brandMapper.queryBrandToTal();
 
     }
-    public void  updateBrand(BrandVo brandVo) {
-        brandMapper.updateBrand(brandVo);
+    public void  updateBrand(BrandEntity brandEntity) {
+        brandMapper.updateBrand(brandEntity);
     }
 
+    public BrandEntity getBrandDetail(Integer id){
+        return  brandMapper.getBrandDetail(id);
+    }
 
 }

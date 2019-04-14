@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.charlie.dao.mapper.ManagerMapper">
+  <resultMap id="ManagerMap" type="com.charlie.entity.ManagerEntity">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="areacode" jdbcType="INTEGER" property="areaCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="headpath" jdbcType="VARCHAR" property="headPath" />
+    <result column="createtime" jdbcType="DATE" property="createTime" />
+    <result column="updatetime" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  <select id="queryManagerList" resultMap="ManagerMap">
+    select
+    <choose>
+      <when test="fields!=null and fields !='' ">
+        ${fields}
+      </when>
+      <otherwise>
+          *
+      </otherwise>
+    </choose>
+    from `t_manager`
+    <choose>
+      <when test="sidx!=null and sidx.trim() !=''">
+        ORDER BY  ${sidx} ${order}
+      </when>
+      <otherwise>
+        ORDER BY  id DESC
+      </otherwise>
+    </choose>
+    <if test="offset !=null and limit !='' ">
+      limit #{offset},#{limit}
+    </if>
+  </select>
+  <select id="queryManagerToTal" resultType="java.lang.Integer" >
+    select count(*) from `t_manager`
+  </select>
+  <update id="updateManager"  parameterType="com.charlie.entity.ManagerEntity">
+      update `t_manager`
+      <set>
+        <if test="name!=null">name=#{name},</if>
+      </set>
+      WHERE  id = #{id}
+  </update>
+  <select id="getManagerDetail"  resultMap="ManagerMap">
+    select * from `t_manager`  WHERE id=#{id}
+  </select>
+</mapper>

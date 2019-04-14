@@ -1,14 +1,15 @@
 package com.charlie.service;
 
-import com.charlie.entity.BrandVo;
+import com.charlie.entity.BrandEntity;
 
 import java.util.List;
 import java.util.Map;
 
 public interface BrandService {
 
-    List<BrandVo> queryAllBrand();
-    List<BrandVo> queryBrandList(Map<String,Object> query);
+    List<BrandEntity> queryAllBrand();
+    List<BrandEntity> queryBrandList(Map<String,Object> query);
     int queryBrandToTal();
-    void updateBrand(BrandVo brandVo);
+    void updateBrand(BrandEntity brandEntity);
+    BrandEntity getBrandDetail(Integer id);
 }

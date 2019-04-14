@@ -1,7 +1,7 @@
 package com.charlie.controller;
 
 import com.charlie.common.GenericController;
-import com.charlie.entity.BrandVo;
+import com.charlie.entity.BrandEntity;
 import com.charlie.service.BrandService;
 import com.charlie.util.ApiBaseAction;
 import com.charlie.util.ApiPageUtils;
@@ -34,7 +34,7 @@ public class BrandController extends GenericController {
     @ResponseBody
     public Map<String, Object> getAllBrand(HttpServletRequest request, HttpServletResponse response) {
         //调用service方法得到用户列表
-        List<BrandVo> brandEntityList = brandService.queryAllBrand();
+        List<BrandEntity> brandEntityList = brandService.queryAllBrand();
         logger.info("===============================成功查询品牌列表！");
         ApiBaseAction api =new ApiBaseAction();
         return api.toResponseSuccess(brandEntityList);
@@ -56,7 +56,7 @@ public class BrandController extends GenericController {
         params.put("sidx","id");//排序的列表
         params.put("order","asc"); //排序的方式
         Query query = new Query(params);
-        List<BrandVo> brandEntityList = brandService.queryBrandList(query);
+        List<BrandEntity> brandEntityList = brandService.queryBrandList(query);
         logger.info("===============================成功查询品牌列表！");
         int total = brandService.queryBrandToTal();
         ApiPageUtils pageUtils = new ApiPageUtils(brandEntityList,total,query.getLimit(),query.getPageNum());
@@ -68,11 +68,20 @@ public class BrandController extends GenericController {
     @ResponseBody
     public Map<String, Object> editBrandDetail(HttpServletRequest request, HttpServletResponse response,@RequestParam Map<String, String> params) {
         //调用service方法得到用户列表
-        BrandVo brandInfo = new BrandVo();
-        brandInfo.setId(Integer.parseInt(params.get("id")));
-        brandInfo.setPictureUrl(params.get("pictureUrl"));
-        brandInfo.setDesc(params.get("desc"));
+        BrandEntity brandInfo = new BrandEntity();
+        String bid = params.get("id");
+        String bname = params.get("name");
+        String pictureUrl  = params.get("pictureUrl");
+        String desc  =params.get("desc");
         ApiBaseAction api =new ApiBaseAction();
+        if(bname==null||"".equals(bname)){
+            return api.toResponseObject(500,"品牌名称不能为空","");
+        }else {
+            brandInfo.setName(bname);
+        }
+        brandInfo.setPictureUrl(pictureUrl);
+        brandInfo.setId(Integer.parseInt(bid));
+        brandInfo.setDesc(desc);
         try{
             brandService.updateBrand(brandInfo);
             return api.toResponseSuccess();
@@ -80,5 +89,12 @@ public class BrandController extends GenericController {
             return api.toResponseFail();
 
         }
+    }
+    @RequestMapping(value = "/getBrandDetail",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> getBrandDetail(HttpServletRequest request, HttpServletResponse response,@RequestParam(value="id", required = false) String id) {
+        BrandEntity brandEntity = brandService.getBrandDetail(Integer.parseInt(id));
+        ApiBaseAction api =new ApiBaseAction();
+        return api.toResponseSuccess(brandEntity);
     }
 }

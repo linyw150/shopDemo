@@ -1,6 +1,6 @@
 package com.charlie;
 
-import com.charlie.entity.Menu;
+import com.charlie.entity.MenuEntity;
 import com.charlie.service.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ public class junitDao2 {
     @Test
     public void test(){
         //调用service方法得到用户列表
-        List<Menu> menuList = menuService.getMenuList();
+        List<MenuEntity> menuList = menuService.getMenuList();
     }
 
 }

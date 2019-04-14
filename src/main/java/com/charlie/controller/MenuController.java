@@ -1,10 +1,8 @@
 package com.charlie.controller;
 
 import com.charlie.common.GenericController;
-import com.charlie.entity.Menu;
-import com.charlie.entity.User;
+import com.charlie.entity.MenuEntity;
 import com.charlie.service.MenuService;
-import com.charlie.service.UserService;
 import com.charlie.util.ApiBaseAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +31,7 @@ public class MenuController extends GenericController {
     @ResponseBody
     public Map<String, Object> getMenuList(HttpServletRequest request, HttpServletResponse response) {
         //调用service方法得到用户列表
-        List<Menu> menuList = menuService.getMenuList();
+        List<MenuEntity> menuList = menuService.getMenuList();
         ApiBaseAction api =new ApiBaseAction();
         return api.toResponseSuccess(menuList);
     }

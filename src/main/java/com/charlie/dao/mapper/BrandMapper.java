@@ -1,6 +1,6 @@
 package com.charlie.dao.mapper;
 
-import com.charlie.entity.BrandVo;
+import com.charlie.entity.BrandEntity;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +9,9 @@ import java.util.Map;
 
 @Repository
 public interface BrandMapper {
-    List<BrandVo> queryAllBrand();
-    List<BrandVo> queryBrandList(Map<String,Object> params);
+    List<BrandEntity> queryAllBrand();
+    List<BrandEntity> queryBrandList(Map<String,Object> params);
     int  queryBrandToTal();
-    void  updateBrand(BrandVo brandVo);;
+    void  updateBrand(BrandEntity brandVo);;
+    BrandEntity getBrandDetail(Integer id);
 }

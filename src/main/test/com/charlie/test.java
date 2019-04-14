@@ -6,8 +6,13 @@ import org.junit.Test;
 public class test {
     @Test
     public void test(){
-        int total = 49;
-        System.out.println(Math.ceil((double)total/10));
+        String bid = "a";
+        if(bid==null||"".equals(bid)){
+            System.out.println("a");
+        }else {
+            System.out.println("b");
+        }
+
     }
 
 }
