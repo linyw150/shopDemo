@@ -11,6 +11,7 @@ public interface ManagerMapper {
     List<ManagerEntity> queryAllManager();
     List<ManagerEntity> queryManagerList(Map<String, Object> params);
     int  queryManagerToTal();
-    void  updateManager(ManagerEntity manager);
-    ManagerEntity getManagerDetail(Integer id);
+    int  save(ManagerEntity manager);
+    int  update(ManagerEntity manager);
+    ManagerEntity queryObject(Integer id);
 }

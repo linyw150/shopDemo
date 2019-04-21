@@ -7,9 +7,9 @@ import java.util.Map;
 
 public interface ManagerService {
 
-    List<ManagerEntity> queryAllManager();
     List<ManagerEntity> queryManagerList(Map<String, Object> query);
     int queryManagerToTal();
-    void updateManager(ManagerEntity manager);
-    ManagerEntity getManagerDetail(Integer id);
+    int save(ManagerEntity manager);
+    int update(ManagerEntity manager);
+    ManagerEntity queryObject(Integer id);
 }

@@ -15,24 +15,22 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired
     private ManagerMapper managerMapper;
 
-    public List<ManagerEntity> queryAllManager() {
-        return managerMapper.queryAllManager();
-
-    }
     public List<ManagerEntity> queryManagerList(Map<String,Object> query) {
         return managerMapper.queryManagerList(query);
 
     }
     public int  queryManagerToTal() {
         return managerMapper.queryManagerToTal();
-
     }
-    public void  updateManager(ManagerEntity manager) {
-        managerMapper.updateManager(manager);
+    public int  save(ManagerEntity managerEntity) {
+        return managerMapper.save(managerEntity);
+    }
+    public int  update(ManagerEntity manager) {
+        return  managerMapper.update(manager);
     }
 
-    public ManagerEntity getManagerDetail(Integer id){
-        return  managerMapper.getManagerDetail(id);
+    public ManagerEntity queryObject(Integer id){
+        return  managerMapper.queryObject(id);
     }
 
 }

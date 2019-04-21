@@ -21,6 +21,8 @@ public class ManagerEntity implements Serializable{
 
     private Date updateTime;
 
+    private Integer state;
+
     public Integer getId() {
         return id;
     }
@@ -77,16 +79,11 @@ public class ManagerEntity implements Serializable{
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "Manager{" +
-                "id=" + id +
-                ", areaCode=" + areaCode +
-                ", mobile='" + mobile + '\'' +
-                ", name='" + name + '\'' +
-                ", headPath='" + headPath + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 }

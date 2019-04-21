@@ -9,10 +9,8 @@ import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import com.charlie.service.ManagerService;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,6 +47,23 @@ public class managerjunit {
             System.out.println(managerEntityList.toString());
         }
         System.out.println("***********");
+    }
+
+    @Test
+    public  void test2(){
+        ManagerEntity ManagerInfo = new ManagerEntity();
+        ApiBaseAction api =new ApiBaseAction();
+        //id存在于数据库，则编辑，否则，保存新店长
+        ManagerInfo.setMobile("333333");
+        ManagerInfo.setName("lin");
+        ManagerInfo.setId(1);
+        ManagerInfo.setAreaCode(86);
+        Date date = new Date();
+        ManagerInfo.setCreateTime(new Timestamp(date.getTime()));
+        ManagerInfo.setUpdateTime(new Timestamp(date.getTime()));
+        ManagerInfo.setHeadPath("aaa");
+        managerService.update(ManagerInfo);
+
     }
 
 }

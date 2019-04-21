@@ -3,7 +3,8 @@
 <mapper namespace="com.charlie.dao.mapper.ManagerMapper">
   <resultMap id="ManagerMap" type="com.charlie.entity.ManagerEntity">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="areacode" jdbcType="INTEGER" property="areaCode" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="areaode" jdbcType="INTEGER" property="areaCode" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="headpath" jdbcType="VARCHAR" property="headPath" />
@@ -36,14 +37,24 @@
   <select id="queryManagerToTal" resultType="java.lang.Integer" >
     select count(*) from `t_manager`
   </select>
-  <update id="updateManager"  parameterType="com.charlie.entity.ManagerEntity">
+  <update id="update"  parameterType="com.charlie.entity.ManagerEntity">
       update `t_manager`
       <set>
         <if test="name!=null">name=#{name},</if>
+        <if test="areaCode!=null">areacode=#{areaCode},</if>
+        <if test="mobile!=null">mobile=#{mobile},</if>
+        <if test="headPath!=null">headpath=#{headPath},</if>
+        <if test="createTime!=null">createtime=#{createTime},</if>
+        <if test="updateTime!=null">updatetime=#{updateTime},</if>
+        <if test="state!=null">state=#{state}</if>
       </set>
       WHERE  id = #{id}
   </update>
-  <select id="getManagerDetail"  resultMap="ManagerMap">
+  <insert id="save" parameterType="com.charlie.entity.ManagerEntity" >
+     INSERT INTO  `t_manager`(areacode,mobile,name,headpath,createtime,updatetime,state)
+     VALUES (#{areaCode},#{mobile},#{name},#{headPath},#{createTime},#{updateTime},#{state})
+  </insert>
+  <select id="queryObject"  resultMap="ManagerMap">
     select * from `t_manager`  WHERE id=#{id}
   </select>
 </mapper>

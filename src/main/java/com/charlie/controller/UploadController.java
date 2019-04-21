@@ -1,7 +1,6 @@
 package com.charlie.controller;
 
 import com.charlie.common.GenericController;
-import com.charlie.entity.BrandVo;
 import com.charlie.service.BrandService;
 import com.charlie.util.ApiBaseAction;
 import com.charlie.util.ApiPageUtils;
