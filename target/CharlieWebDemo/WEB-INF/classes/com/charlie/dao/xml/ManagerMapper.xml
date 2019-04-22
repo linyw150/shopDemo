@@ -22,6 +22,9 @@
       </otherwise>
     </choose>
     from `t_manager`
+    <if test="keyword!='' and keyword!=null">
+      WHERE NAME LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+    </if>
     <choose>
       <when test="sidx!=null and sidx.trim() !=''">
         ORDER BY  ${sidx} ${order}

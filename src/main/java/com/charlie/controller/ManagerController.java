@@ -35,8 +35,8 @@ public class ManagerController extends GenericController {
     @ResponseBody
     public Map<String, Object> getManagerList(HttpServletRequest request, HttpServletResponse response,
                                             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize
-
+                                            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                                            @RequestParam(value = "keyword") String keyword
     ) {
         //调用service方法得到用户列表
         Map params = new HashMap();
@@ -44,6 +44,7 @@ public class ManagerController extends GenericController {
         params.put("pageNum",pageNum);
         params.put("pageSize",pageSize);
         params.put("limit",pageSize);
+        params.put("keyword",keyword);
         params.put("sidx","id");//排序的列表
         params.put("order","asc"); //排序的方式
         Query query = new Query(params);
